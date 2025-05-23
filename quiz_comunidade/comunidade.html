@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunidade</title>
+    <link rel="stylesheet" href="comunidade.css ">
+</head>
+<body>
+    
+    <!-- logo -->
+    <img src="../Imagens/imgLogo.png" alt="Logo" class="logo" id="logo-btn">
+
+    <!-- botão de voltar -->
+    <div class="voltar">
+        <a href="../tela_quiz/explorer.html">
+             <img src="../Imagens/imgVoltar.png" ></a>
+    </div>
+
+    <div class="container">
+        <h1>EXPLORE OS QUIZZES DA COMUNIDADE:</span></h1>
+
+        <!-- Usuário-->
+        <div class="profile">
+            <span>Otavinho</span>
+            <img id="avatar-menu" src="../Imagens/icone1.png" alt="Avatar do Menu">
+        </div>
+
+        
+        <div class="jogos">
+
+            <!-- QUIZZES -->
+            <div class="tela" onclick="window.location.href='../jogo_quiz/quiz_otavio/quiz_otavio.html'">
+                <img src="../Imagens/imgQuizOtavio.png" alt="Quiz sobre F1">
+                <p>QUIZ DE FÓRMULA 1<br> <span>CRIADOR: Otavio</span></p>
+                <span>DIFICULDADE: Difícil</span>
+            </div>
+
+            <div class="tela" id="quiz-nauan">
+                <img src="../Imagens/imgJob.png" alt="Quiz Job">
+                <p>QUIZ DO  LTDA <br> <span>CRIADOR: Nauan</span></p>
+                <span>DIFICULDADE: Difícil</span>
+            </div>
+            
+            <div class="tela" id="quiz-mauro">
+                <img src="../Imagens/imgArma.png" alt="Quiz USD">
+                <p>QUIZ DOS D <br> <span>CRIADOR: Mauro</span></p>
+                <span>DIFICULDADE: Moderada</span>
+            </div>
+
+        </div>
+        
+    </div>
+
+    <div class="container2">
+        <div class="jogos">
+
+            <!-- QUIZZES -->
+            <div class="tela" id="quiz-otavio">
+                <img src="../Imagens/imgBandido.png" alt="Quiz Bandido">
+                <p>QUIZ DE MALANDRO <br> <span>CRIADOR: Gustavo</span></p>
+                <span>DIFICULDADE: Fácil</span>
+            </div>
+
+            <div class="tela" onclick="window.location.href='../jogo_quiz/quiz_igor.html'">
+                <img src="../Imagens/imgQuizIgor.png" alt="Quiz sobre Java">
+                <p>QUIZ SOBRE JAVASCRIPT<br> <span>CRIADOR: Igor</span></p>
+                <span>DIFICULDADE: Moderada</span>
+            </div>
+            
+            <div class="tela" id="quiz-victor">
+                <img src="../Imagens/imgArma.png" alt="Quiz USD">
+                <p>QUIZ DA COMPU <br> <span>CRIADOR: Victor</span></p>
+                <span>DIFICULDADE: Moderada</span>
+            </div>
+
+        </div>
+        
+    </div>
+    
+
+    <script src="../JavaScript/conexoes_buttons.js"></script>
+    <script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const avatarMenu = document.getElementById('avatar-menu');
+        const avatarSalvo = localStorage.getItem('avatarSelecionado');
+        if (avatarMenu && avatarSalvo) {
+            avatarMenu.setAttribute('src', avatarSalvo);
+        }
+    });
+</script>
+
+    
+</body>
+</html>
