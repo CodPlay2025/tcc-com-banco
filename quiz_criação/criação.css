@@ -101,6 +101,48 @@ button:hover {
   background-color: #45a049;
 }
 
+.quiz-theme {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+.quiz-theme label {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.quiz-theme input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+.quiz-difficulty {
+  margin-bottom: 30px;
+}
+
+.quiz-difficulty label {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.quiz-difficulty select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  background-color: white;
+}
+
+
 @media (max-width: 600px) {
   form {
     padding: 20px;
