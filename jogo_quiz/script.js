@@ -252,6 +252,13 @@ const questions = {
   
   // Mostra a pergunta atual
   function showQuestion() {
+
+    //Transição entre as perguntas
+    const quizBox = document.getElementById("quiz-container");
+    quizBox.classList.remove("fade-in");
+    quizBox.classList.add("fade-out");
+    setTimeout(() => {
+
     answered = false;
     const level = localStorage.getItem('selectedLevel');
     const currentQ = questions[level][currentQuestion];
@@ -266,6 +273,12 @@ const questions = {
       const button = document.createElement("button");
       button.textContent = option;
       button.onclick = () => selectAnswer(index);
+      button.style.backgroundColor = "";
+      button.style.color = "";
+      button.style.opacity = 1;
+      button.disabled = false;
+      button.style.transition = "all 0.3s ease"; // animação suave
+
       optionsContainer.appendChild(button);
     });
   
@@ -275,7 +288,11 @@ const questions = {
     document.getElementById("question-counter").textContent = counterText;
   
     resetTimer();
-  }
+
+    //Transição entre as perguntas
+    quizBox.classList.remove("fade-out");
+    quizBox.classList.add("fade-in");
+    }, 500);}
   
   // Seleciona a resposta e verifica se está certa
   function selectAnswer(selected) {
@@ -288,21 +305,25 @@ const questions = {
     const currentQ = questions[level][currentQuestion];
     const correct = currentQ.answer;
   
-    const feedback = document.getElementById("feedback");
-    feedback.classList.remove("hidden");
-    feedback.textContent = selected === correct ? "✅ ACERTOU!" : "❌ ERROU!";
-    feedback.style.color = selected === correct ? "green" : "red";
-    feedback.style.fontWeight = "bold";
-    feedback.style.fontSize = "1.5rem";
-    feedback.style.textAlign = "center";
-  
     if (selected === correct) {
       score++;
     }
   
     // Desativa os botões para evitar múltiplos cliques
     const buttons = document.querySelectorAll("#options button");
-    buttons.forEach(btn => btn.disabled = true);
+
+    buttons.forEach((btn, i) => {
+      btn.disabled = true;
+      if (i === correct) {
+        btn.style.backgroundColor = "#4CAF50"; // verde
+        btn.style.color = "#fff";
+      } else if (i === selected) {
+        btn.style.backgroundColor = "#f44336"; // vermelho
+        btn.style.color = "#fff";
+      } else {
+        btn.style.opacity = 0.6;
+      }
+    });
   
     // Vai para próxima pergunta depois de um tempo
     setTimeout(() => {
@@ -372,6 +393,15 @@ const questions = {
     updateRanking(name, score);
     displayRanking();
   }
+
+  function stopQuiz() {
+  const confirmar = confirm("Tem certeza de que deseja encerrar o quiz agora?");
+  if (confirmar) {
+    clearInterval(timer); // Para o timer
+    endQuiz(); // Vai para a tela de resultado
+  }
+  }
+
   
   // Atualiza o ranking no localStorage
   function updateRanking(name, score) {
