@@ -9,7 +9,7 @@ body, html {
   /* Fundo e fonte geral */
   body {
     font-family: 'Segoe UI', 'Roboto', sans-serif;
-    background: url('../Imagens/imgBackground.png') no-repeat center center fixed;
+    background: url('../../Imagens/imgBackground.png') no-repeat center center fixed;
     background-size: cover;
     color: white;
     display: flex;

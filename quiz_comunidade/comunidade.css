@@ -18,6 +18,21 @@ body {
     transition: background 0.3s ease, transform 0.3s, box-shadow 0.3s;
 }
 
+.voltar{ 
+    position: absolute;
+    top: 50px; /* Ajuste para alinhar com o título */
+    left: 10px;
+    display:inline-flex;
+    align-items: center;
+    gap: 10px;
+
+}
+
+.voltar:hover {
+    transform: scale(1.05);
+    transition: background 0.3s ease, transform 0.3s, box-shadow 0.3s;
+}
+
 .container {
     margin-top: 30px;
 }
@@ -85,15 +100,7 @@ h1 span {
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5);
 }
 
-.voltar{ 
-    position: absolute;
-    top: 50px; /* Ajuste para alinhar com o título */
-    left: 10px;
-    display:inline-flex;
-    align-items: center;
-    gap: 10px;
 
-}
 
 
 

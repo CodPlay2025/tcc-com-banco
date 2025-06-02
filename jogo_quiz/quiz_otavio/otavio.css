@@ -364,3 +364,31 @@ button:hover {
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(255,255,255,0.1);
 }
+
+/*animação de transição entre as perguntas*/
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.fade-in {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+  
+/*Botão de parar jogo*/
+#stop-button {
+  margin-left: 40%;
+  margin-top: 15px;
+  background-color: #fafafd;
+  color: rgb(7, 14, 77);
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#stop-button:hover {
+  background-color: #074c8b;
+}

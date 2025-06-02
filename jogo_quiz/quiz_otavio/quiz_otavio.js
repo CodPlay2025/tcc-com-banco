@@ -90,6 +90,13 @@ const questions = {
   
   // Mostra a pergunta atual
   function showQuestion() {
+
+     //Transição entre as perguntas
+     const quizBox = document.getElementById("quiz-container");
+     quizBox.classList.remove("fade-in");
+     quizBox.classList.add("fade-out");
+     setTimeout(() => {
+
     answered = false;
     const level = localStorage.getItem('selectedLevel');
     const currentQ = questions[level][currentQuestion];
@@ -119,7 +126,12 @@ if (currentQ.image) {
     document.getElementById("question-counter").textContent = counterText;
   
     resetTimer();
-  }
+
+    //Transição entre as perguntas
+    quizBox.classList.remove("fade-out");
+    quizBox.classList.add("fade-in");
+    }, 500);}
+  
   
   // Seleciona a resposta e verifica se está certa
   function selectAnswer(selected) {
@@ -132,17 +144,24 @@ if (currentQ.image) {
     const currentQ = questions[level][currentQuestion];
     const correct = currentQ.answer;
   
-    const feedback = document.getElementById("feedback");
-    feedback.classList.remove("hidden");
-    feedback.textContent = selected === correct ? "✅ ACERTOU!" : "❌ ERROU!";
-    feedback.style.color = selected === correct ? "green" : "red";
   
     if (selected === correct) {
       score++;
     }
   
     const buttons = document.querySelectorAll("#options button");
-    buttons.forEach(btn => btn.disabled = true);
+    buttons.forEach((btn, i) => {
+      btn.disabled = true;
+      if (i === correct) {
+        btn.style.backgroundColor = "#4CAF50"; // verde
+        btn.style.color = "#fff";
+      } else if (i === selected) {
+        btn.style.backgroundColor = "#f44336"; // vermelho
+        btn.style.color = "#fff";
+      } else {
+        btn.style.opacity = 0.6;
+      }
+    });
   
     setTimeout(() => {
       feedback.classList.add("hidden");
@@ -201,6 +220,14 @@ if (currentQ.image) {
     updateRanking(name, score);
     displayRanking();
   }
+
+  function stopQuiz() {
+    const confirmar = confirm("Tem certeza de que deseja encerrar o quiz agora?");
+    if (confirmar) {
+      clearInterval(timer); // Para o timer
+      endQuiz(); // Vai para a tela de resultado
+    }
+    }
   
   // Atualiza o ranking no localStorage
   function updateRanking(name, score) {
