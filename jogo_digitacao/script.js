@@ -2,6 +2,7 @@ const words = [
     "html", "css", "javascript", "codigo", "computador",
     "função", "variavel", "constante", "objeto", "array",
     "loop", "condição", "frontend", "backend", "desenvolvedor"
+    
 //adicionar mais palavras aq q to sem ideia pfv
 ];
 
