@@ -1,8 +1,14 @@
 const words = [
-    "html", "css", "javascript", "codigo", "computador",
-    "função", "variavel", "constante", "objeto", "array",
-    "loop", "condição", "frontend", "backend", "desenvolvedor"
-    
+    "html", "css", "javascript", "tag", "elemento",
+    "div", "span", "header", "footer", "section",
+    "article", "nav", "input", "button", "form",
+    "label", "id", "class", "style", "color",
+    "margin", "padding", "border", "background", "display",
+    "flex", "grid", "inline", "block", "responsive",
+    "mediaquery", "hover", "focus", "transition", "animation",
+    "keyframes", "event", "onclick", "oninput", "addEventListener",
+    "querySelector", "innerHTML", "textContent", "loop",
+    "array", "function", "variavel", "constante", "ifelse"
 //adicionar mais palavras aq q to sem ideia pfv
 ];
 
@@ -94,6 +100,14 @@ function endGame() {
     gameScreen.classList.add('hidden');
     resultScreen.classList.remove('hidden');
     finalScore.textContent = `Sua pontuação foi: ${score}`;
+}
+
+function stopDigitacao() {
+    const confirmar = confirm("Tem certeza de que deseja encerrar o jogo agora?");
+    if (confirmar) {
+      clearInterval(timer); // Para o timer
+      endGame(); // Vai para a tela de resultado
+    }
 }
 
 function restartTyping() {

@@ -109,6 +109,14 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    // Digitação Card / tela principal
+    const digitacaoAlt = document.getElementById("digitacao");
+    if (digitacaoAlt) {
+        digitacaoAlt.addEventListener("click", function () {
+            window.location.href = "../jogo_digitacao/index.html";
+        });
+    }
+
     // Hamburguer menu
     const logoBtn = document.getElementById('logo-btn');
     const menu = document.getElementById('hamburger-menu');
