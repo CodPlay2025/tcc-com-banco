@@ -8,14 +8,15 @@
 <script src="quiz_victor.js" defer></script>
 </head>
 <body>
-<!-- Botão de voltar -->
-<div class="voltar">
-<a href="../../quiz_comunidade/comunidade.html">
-<img src="../../Imagens/imgVoltar.png" alt="Voltar">
-</a>
-</div>
+
 <!-- Tela inicial -->
 <div id="name-screen" class="screen">
+<!-- Botão de voltar -->
+<div class="voltar">
+    <a href="../../quiz_comunidade/comunidade.html">
+    <img src="../../Imagens/imgVoltar.png" alt="Voltar">
+    </a>
+    </div>    
 <img src="../../Imagens/imgBola.png" alt="Bola de Futebol" class="bola-topo" />
 <h1>Quiz do Victor</h1>
 <h2>Tema: Futebol</h2>
@@ -30,6 +31,7 @@
 <div id="options" class="options"></div>
 <div id="timer">Tempo: 15s</div>
 <div id="timer-bar"><div id="time-fill"></div></div>
+<button id="stop-button" onclick="stopQuiz()">Parar Jogo</button>
 </div>
 <!-- Resultado -->
 <div id="result-screen" class="hidden result-container">
@@ -40,10 +42,6 @@
 <button onclick="restartQuiz()">Jogar Novamente</button>
 <button onclick="goToMenu()">Menu Principal</button>
 </div>
-</div>
-<div class="result-right ranking-box">
-<h3>Ranking</h3>
-<ul id="ranking-list" class="ranking-list"></ul>
 </div>
 </div>
 </body>

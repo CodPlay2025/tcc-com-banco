@@ -28,16 +28,20 @@ body, html {
     margin-bottom: 10px;
    }
    /* Botão de voltar */
-   .voltar {
+   .voltar{ 
     position: absolute;
-    top: 15px;
-    left: 15px;
-   }
-   .voltar img {
-    width: 40px;
-    cursor: pointer;
-    filter: drop-shadow(0 0 5px #037917);
-   }
+    top: 50px; /* Ajuste para alinhar com o título */
+    left: 10px;
+    display:inline-flex;
+    align-items: center;
+    gap: 10px;
+
+}
+
+.voltar:hover {
+    transform: scale(1.05);
+    transition: background 0.3s ease, transform 0.3s, box-shadow 0.3s;
+}
    /* Botões e inputs */
    button {
     padding: 12px 20px;

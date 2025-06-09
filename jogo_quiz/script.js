@@ -403,37 +403,6 @@ const questions = {
   }
 
   
-  // Atualiza o ranking no localStorage
-  function updateRanking(name, score) {
-    const level = localStorage.getItem('selectedLevel');
-    const rankingKey = `quizRanking_${level}`;
-    let ranking = JSON.parse(localStorage.getItem(rankingKey)) || [];
-  
-    const existing = ranking.find(p => p.name === name);
-    if (!existing || score > existing.score) {
-      ranking = ranking.filter(p => p.name !== name);
-      ranking.push({ name, score });
-    }
-  
-    ranking.sort((a, b) => b.score - a.score);
-    localStorage.setItem(rankingKey, JSON.stringify(ranking.slice(0, 5)));
-  }
-  
-  // Mostra o ranking na tela
-  function displayRanking() {
-    const level = localStorage.getItem('selectedLevel');
-    const rankingKey = `quizRanking_${level}`;
-    const rankingList = document.getElementById("ranking-list");
-    const ranking = JSON.parse(localStorage.getItem(rankingKey)) || [];
-  
-    rankingList.innerHTML = "";
-    ranking.forEach((player, index) => {
-      const li = document.createElement("li");
-      li.textContent = `${index + 1}. ${player.name}: ${player.score}`;
-      rankingList.appendChild(li);
-    });
-  }
-  
   // Reinicia o quiz
   function restartQuiz() {
     window.location.href = "dificuldade.html";
