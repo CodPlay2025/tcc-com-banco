@@ -221,7 +221,7 @@ function restartQuiz() {
 }
 
 function goToMenu() {
-  window.location.href = "../quiz_comunidade/comunidade.html";
+  window.location.href = "../../quiz_comunidade/comunidade.html";
 }
 
 // (Opcional) Seleção manual de dificuldade
