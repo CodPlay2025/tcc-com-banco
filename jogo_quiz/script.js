@@ -214,19 +214,35 @@ let questions = {
   ]
 };
 
-window.onload = function () {
-  if (modoPersonalizado) {
-    fetch(`http://localhost:3000/quiz/${quizId}`)
-    .then(res => res.json())
-    .then(data => {
-      questions = { custom: data };
-      localStorage.setItem('selectedLevel', 'custom');
+window.onload = async function () {
+  if (modoPersonalizado && quizId) {
+    try {
+    const res = await fetch(`http://localhost:3000/quiz/${quizId}`);
+    const data = await res.json();
+    if (!Array.isArray(data) || data.length === 0) {
+      throw new Error("Quiz não encontrado ou vazio");
+    }
+
+    // substitui as perguntas
+    questions = { custom: data };
+    localStorage.setItem("selectedLevel", "custom");
+
+    // inicia o jogo com as perguntas do banco
+    startQuiz();
+    } catch (err) {
+      console.error("Erro ao carregar quiz do banco:", err);
+      alert("Quiz inválido ou indisponível.");
+    window.location.href = "../quiz_comunidade/comunidade.html";
+    }
+  } else {
+    // fallback: se não for personalizado
+    const level = localStorage.getItem('selectedLevel');
+    if (level && questions[level]) {
       startQuiz();
-    }).catch(err => {
-      console.error("Erro ao carregar quiz:", err);
+    } else {
       alert("Quiz inválido.");
-      window.location.href = "../quiz_comunidade/comunidade.html";
-    });
+    window.location.href = "../quiz_comunidade/comunidade.html";
+    }
   }
 };
   
@@ -474,3 +490,12 @@ localStorage.removeItem('quizPersonalizadoId');
     localStorage.setItem('selectedLevel', level);
     window.location.href = "index.html";
   }
+
+  window.onload = function () {
+    const startBtn = document.getElementById("start-button");
+    if (!modoPersonalizado && startBtn) {
+      startBtn.addEventListener("click", () => {
+        startQuiz();
+      });
+    }
+  };

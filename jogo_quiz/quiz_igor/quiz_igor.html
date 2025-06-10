@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Quiz do Igor</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="igor.css" />
   <script src="quiz_igor.js" defer></script>
 </head>
 <body>
@@ -12,14 +12,14 @@
       <!-- botão de voltar -->
       <div class="voltar">
         <a href="../quiz_comunidade/comunidade.html">
-             <img src="../Imagens/imgVoltar.png" ></a>
+             <img src="../../Imagens/imgVoltar.png" ></a>
     </div>
 
   <!-- Tela inicial onde o jogador clica para iniciar -->
   <div id="name-screen">
     <h1>Quiz do Igor</h1>
     <p>Clique no botão para iniciar</p>
-    <button onclick="startQuiz()">Iniciar</button>
+    <button class="buttoncss" onclick="startQuiz()">Iniciar</button>
   </div>
 
   <!-- Container do quiz com pergunta, opções e timer -->
@@ -30,6 +30,7 @@
     <div id="options" class="options"></div>
     <div id="timer">Tempo: 15s</div>
     <div id="timer-bar"><div id="time-fill"></div></div>
+    <button id="stop-button" onclick="stopQuiz()">Parar Jogo</button>
   </div>
 
   <!-- Tela de resultado final com ranking -->
@@ -38,13 +39,9 @@
       <h2>Resultado</h2>
       <p id="final-score"></p>
       <div class="result-buttons">
-        <button onclick="restartQuiz()">Jogar Novamente</button>
-        <button onclick="goToMenu()">Menu Principal</button>
+        <button class="buttoncss" onclick="restartQuiz()">Jogar Novamente</button>
+        <button class="buttoncss" onclick="goToMenu()">Menu Principal</button>
       </div>
-    </div>
-    <div class="result-right ranking-box">
-      <h3>Ranking</h3>
-      <ul id="ranking-list" class="ranking-list"></ul>
     </div>
   </div>
 </body>
