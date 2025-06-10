@@ -17,8 +17,8 @@
     </div>
 
      <!-- Usuário-->
-     <div class="profile">
-        <span>Otavio La Torraca</span>
+    <div class="profile">
+        <span id="nome-usuario-menu">Usuário</span>
         <img id="avatar-menu" src="../Imagens/icone1.png" alt="Avatar do Menu">
     </div>
 
@@ -66,6 +66,21 @@
             const avatarSalvo = localStorage.getItem('avatarSelecionado');
             if (avatarMenu && avatarSalvo) {
                 avatarMenu.setAttribute('src', avatarSalvo);
+            }
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const avatarMenu = document.getElementById('avatar-menu');
+            const avatarSalvo = localStorage.getItem('avatarSelecionado');
+            if (avatarMenu && avatarSalvo) {
+                avatarMenu.setAttribute('src', avatarSalvo);
+            }
+
+    // Nome do usuário
+            const nomeUsuario = localStorage.getItem('nomeUsuario');
+            const nomeElemento = document.getElementById('nome-usuario-menu');
+            if (nomeUsuario && nomeElemento) {
+                nomeElemento.textContent = nomeUsuario;
             }
         });
 </script>

@@ -27,9 +27,10 @@
 
         <!-- Usuário-->
         <div class="profile">
-            <span>Otavinho</span>
+            <span id="nome-usuario-menu">Usuário</span>
             <img id="avatar-menu" src="../Imagens/icone1.png" alt="Avatar do Menu">
         </div>
+
 
         
         <div class="jogos">
@@ -38,13 +39,6 @@
                 <img src="../Imagens/imgUniversoQuiz.png" alt="Quiz Programação">
                 <p>UNIVERSO QUIZ</p>
             </div>
-
-             <!-- QUIZ -->
-             <div class="tela" id="digitacao">
-                <img src="../Imagens/imgDigitacao.png" alt="digitacao">
-                <p>UNIVERSO DIGITAÇÃO</p>
-            </div>
-            
 
 
 
@@ -77,6 +71,21 @@
         const avatarSalvo = localStorage.getItem('avatarSelecionado');
         if (avatarMenu && avatarSalvo) {
             avatarMenu.setAttribute('src', avatarSalvo);
+        }
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const avatarMenu = document.getElementById('avatar-menu');
+        const avatarSalvo = localStorage.getItem('avatarSelecionado');
+        if (avatarMenu && avatarSalvo) {
+            avatarMenu.setAttribute('src', avatarSalvo);
+        }
+
+    // Nome do usuário
+        const nomeUsuario = localStorage.getItem('nomeUsuario');
+        const nomeElemento = document.getElementById('nome-usuario-menu');
+        if (nomeUsuario && nomeElemento) {
+            nomeElemento.textContent = nomeUsuario;
         }
     });
 </script>

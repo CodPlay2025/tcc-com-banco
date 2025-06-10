@@ -6,11 +6,11 @@
    <link rel="stylesheet" href="style.css" />
    <script src="script.js" defer></script>
    <title>Quiz</title>
+   <script src="script.js" defer></script>
  </head>
  <body>
 
-   <!-- logo -->
-   <img src="../Imagens/imgLogo.png" alt="Logo" class="logo">
+  
 
    <!-- Tela inicial onde o jogador digita o nome -->
    <div id="name-screen">
@@ -23,8 +23,7 @@
 
      <h1>Quiz CodPlay 360°</h1>
      <label for="player-name">Está preparado?</label>
-     <button class="buttoncss" onclick="startQuiz()">Iniciar</button>
-   
+     <button onclick="startQuiz()">Iniciar</button>
    </div>
  
    <!-- Container do quiz com pergunta, opções e timer -->
@@ -39,21 +38,20 @@
     <button id="stop-button" onclick="stopQuiz()">Parar Jogo</button>
   </div>
      
-   </div>
+  </div>
  
    <!-- Tela de resultado final com ranking -->
-   <div id="result-screen" class="hidden result-container">
-     <div class="result-left">
-       <h2>Resultado</h2>
-       <p id="final-score"></p>
-       <div class="result-buttons">
-       
-         <button class="buttoncss" onclick="restartQuiz()">Jogar Novamente</button>
-         <button class="buttoncss" onclick="goToMenu()">Menu Principal</button>
-        
-       </div>
-     </div>    
+  <div id="result-screen" class="hidden result-container">
+    <ul id="ranking-list" class="ranking-list"></ul>
+    <div class="result-left">
+      <h2>Resultado</h2>
+      <p id="final-score"></p>
+      <div class="result-buttons">
+        <button onclick="restartQuiz()">Jogar Novamente</button>
+        <button onclick="goToMenu()">Menu Principal</button>
+      </div>
+    </div>    
      
-   </div>
+  </div>
    
  </body>

@@ -1,4 +1,9 @@
-const questions = {
+const urlParams = new URLSearchParams(window.location.search);
+const quizId = urlParams.get('quiz_id');
+const modoPersonalizado = quizId !== null;
+const feedback = document.getElementById("feedback");
+
+let questions = {
   easy: [
     {
       question: "1. Qual linguagem é usada para estruturar páginas da web?",
@@ -209,6 +214,21 @@ const questions = {
   ]
 };
 
+window.onload = function () {
+  if (modoPersonalizado) {
+    fetch(`http://localhost:3000/quiz/${quizId}`)
+    .then(res => res.json())
+    .then(data => {
+      questions = { custom: data };
+      localStorage.setItem('selectedLevel', 'custom');
+      startQuiz();
+    }).catch(err => {
+      console.error("Erro ao carregar quiz:", err);
+      alert("Quiz inválido.");
+      window.location.href = "../quiz_comunidade/comunidade.html";
+    });
+  }
+};
   
   // Variáveis de controle
   let currentQuestion = 0;
@@ -261,7 +281,8 @@ const questions = {
 
     answered = false;
     const level = localStorage.getItem('selectedLevel');
-    const currentQ = questions[level][currentQuestion];
+    const currentQuestions = questions[level];
+    const currentQ = currentQuestions[currentQuestion];
   
     // Atualiza a pergunta e opções
     document.getElementById("question").textContent = currentQ.question;
@@ -283,7 +304,7 @@ const questions = {
     });
   
     // Atualiza o contador de questão
-    const totalQuestions = questions[level].length;
+    const totalQuestions = currentQuestions.length;
     const counterText = `Questão ${currentQuestion + 1} de ${totalQuestions}`;
     document.getElementById("question-counter").textContent = counterText;
   
@@ -384,15 +405,19 @@ const questions = {
   
   // Finaliza o quiz e mostra resultados
   function endQuiz() {
-    document.getElementById("quiz-container").classList.add("hidden");
-    document.getElementById("result-screen").classList.remove("hidden");
-  
-    const name = localStorage.getItem('playerName');
-    document.getElementById("final-score").textContent = ` Sua pontuação foi ${score}`;
-  
-    updateRanking(name, score);
-    displayRanking();
-  }
+document.getElementById("quiz-container").classList.add("hidden");
+document.getElementById("result-screen").classList.remove("hidden");
+
+const name = localStorage.getItem('playerName');
+document.getElementById("final-score").textContent = `Sua pontuação foi ${score}`;
+
+updateRanking(name, score);
+displayRanking();
+
+// Limpa modo personalizado após o fim
+localStorage.removeItem('modoPersonalizado');
+localStorage.removeItem('quizPersonalizadoId');
+}
 
   function stopQuiz() {
   const confirmar = confirm("Tem certeza de que deseja encerrar o quiz agora?");
@@ -402,6 +427,37 @@ const questions = {
   }
   }
 
+  
+  // Atualiza o ranking no localStorage
+  function updateRanking(name, score) {
+    const level = localStorage.getItem('selectedLevel');
+    const rankingKey = `quizRanking_${level}`;
+    let ranking = JSON.parse(localStorage.getItem(rankingKey)) || [];
+  
+    const existing = ranking.find(p => p.name === name);
+    if (!existing || score > existing.score) {
+      ranking = ranking.filter(p => p.name !== name);
+      ranking.push({ name, score });
+    }
+  
+    ranking.sort((a, b) => b.score - a.score);
+    localStorage.setItem(rankingKey, JSON.stringify(ranking.slice(0, 5)));
+  }
+  
+  // Mostra o ranking na tela
+  function displayRanking() {
+    const level = localStorage.getItem('selectedLevel');
+    const rankingKey = `quizRanking_${level}`;
+    const rankingList = document.getElementById("ranking-list");
+    const ranking = JSON.parse(localStorage.getItem(rankingKey)) || [];
+  
+    rankingList.innerHTML = "";
+    ranking.forEach((player, index) => {
+      const li = document.createElement("li");
+      li.textContent = `${index + 1}. ${player.name}: ${player.score}`;
+      rankingList.appendChild(li);
+    });
+  }
   
   // Reinicia o quiz
   function restartQuiz() {

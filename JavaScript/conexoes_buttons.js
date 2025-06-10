@@ -6,30 +6,87 @@ document.addEventListener("DOMContentLoaded", function () {
     let cadastrarBtn = document.querySelector(".fim-cadastro-button");
     let perfilBtn = document.querySelector(".perfil-button");
 
-
     if (perfilBtn) {
         perfilBtn.addEventListener("click", function () {
             window.location.href = "../tela_perfil/editarperfil.html";
         });
     }
 
-    if (startBtn) {
-        startBtn.addEventListener("click", function () {
-            window.location.href = "../tela_login/index.html";
-        });
-    }
-
     if (loginBtn) {
-        loginBtn.addEventListener("click", function (event) {
+        loginBtn.addEventListener("click", async function (event) {
             event.preventDefault();
-            processarLoginOuCadastro("../tela_menu/menu.html");
+
+            const user = document.querySelector('input[name="user"]').value.trim();
+            const senha = document.querySelector('input[name="senha"]').value.trim();
+
+            if (!user || !senha) {
+                alert("Preencha todos os campos.");
+                return;
+            }
+
+            try {
+                const response = await fetch("http://localhost:3000/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                    },
+                    body: `user=${encodeURIComponent(user)}&senha=${encodeURIComponent(senha)}`
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    localStorage.setItem("nomeUsuario", user);
+                    window.location.href = "../tela_menu/menu.html";
+                } else {
+                    alert("Usuário ou senha incorretos.");
+                }
+            } catch (error) {
+                console.error("Erro ao fazer login:", error);
+                alert("Erro na conexão com o servidor.");
+            }
         });
     }
 
     if (cadastrarBtn) {
-        cadastrarBtn.addEventListener("click", function (event) {
+        cadastrarBtn.addEventListener("click", async function (event) {
             event.preventDefault();
-            processarLoginOuCadastro("../tela_perfil/editarperfil.html"); 
+
+            const user = document.querySelector('input[name="user"]').value.trim();
+            const senha = document.querySelector('input[name="senha"]').value.trim();
+
+            if (!user || !senha) {
+                alert("Preencha todos os campos.");
+                return;
+            }
+
+            try {
+                const response = await fetch("http://localhost:3000/cadastro", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                    },
+                    body: `user=${encodeURIComponent(user)}&senha=${encodeURIComponent(senha)}`
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    alert("Usuário cadastrado com sucesso!");
+                    window.location.href = "../tela_login/index.html";
+                } else {
+                    alert("Erro ao cadastrar: " + (data.message || ""));
+                }
+            } catch (error) {
+                console.error("Erro ao cadastrar:", error);
+                alert("Erro na conexão com o servidor.");
+            }
+        });
+    }
+
+    if (startBtn) {
+        startBtn.addEventListener("click", function () {
+            window.location.href = "../tela_login/index.html";
         });
     }
 
@@ -90,7 +147,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-
 document.addEventListener("DOMContentLoaded", function () {
     // Quiz card no explorer.html
     const quizCard = document.getElementById("quiz-card");
@@ -101,7 +157,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Quiz card em outra tela (se existir)
     const quizCardAlt = document.getElementById("quiz");
     if (quizCardAlt) {
         quizCardAlt.addEventListener("click", function () {
@@ -109,15 +164,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Digitação Card / tela principal
-    const digitacaoAlt = document.getElementById("digitacao");
-    if (digitacaoAlt) {
-        digitacaoAlt.addEventListener("click", function () {
-            window.location.href = "../jogo_digitacao/index.html";
-        });
-    }
-
-    // Hamburguer menu
     const logoBtn = document.getElementById('logo-btn');
     const menu = document.getElementById('hamburger-menu');
     const closeBtn = document.getElementById('close-btn');
@@ -140,5 +186,3 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
-
-

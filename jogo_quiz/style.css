@@ -17,13 +17,6 @@ body, html {
     align-items: center;
   }
 
-  .logo {
-    position: absolute;
-    top: 20px;
-    left: 35px;
-    width: 200px; /* Ajuste conforme necessário */
-}
-
   .voltar{ 
     position: absolute;
     top: 50px; /* Ajuste para alinhar com o título */
@@ -271,7 +264,48 @@ body, html {
     gap: 10px;
 
 }
-    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  /* BOTOES DE RESULTADO = arruma ai seu butao*/
+  .result-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .result-buttons button {
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s ease;
+  }
+  
+  .result-buttons button:hover {
+    background-color: #0056b3;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   /* mostra se o caba acertou ou errou miseravi */
   #feedback {
@@ -375,25 +409,4 @@ body, html {
 
 #stop-button:hover {
   background-color: #074c8b;
-}
-
-.buttoncss {
-  background: linear-gradient(90deg, #030958, #2575fc);
-  border: 3px solid white;
-  padding: 15px 30px;
-  border-radius: 30px;
-  color: white;
-  font-size: 20px;
-  cursor: pointer;
-  text-transform: uppercase;
-  font-weight: bold;
-  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
-  margin-top: 15px;
-}
-
-.buttoncss:hover {
-  background: linear-gradient(90deg, #2575fc, #030958);
-  transform: scale(1.1);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
 }
