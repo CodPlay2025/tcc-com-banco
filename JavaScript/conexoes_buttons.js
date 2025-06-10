@@ -157,6 +157,14 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    // Digitação Card / tela principal
+    const digitacaoAlt = document.getElementById("digitacao");
+    if (digitacaoAlt) {
+        digitacaoAlt.addEventListener("click", function () {
+            window.location.href = "../jogo_digitacao/index.html";
+        });
+    }
+
     const quizCardAlt = document.getElementById("quiz");
     if (quizCardAlt) {
         quizCardAlt.addEventListener("click", function () {

@@ -410,3 +410,24 @@ body, html {
 #stop-button:hover {
   background-color: #074c8b;
 }
+
+.buttoncss {
+  background: linear-gradient(90deg, #030958, #2575fc);
+  border: 3px solid white;
+  padding: 15px 30px;
+  border-radius: 30px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+  margin-top: 15px;
+}
+
+.buttoncss:hover {
+  background: linear-gradient(90deg, #2575fc, #030958);
+  transform: scale(1.1);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+}
